@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureHire - Comprehensive Employment Background Checks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            color: #3498db;
+        }
+
+        .cta-button, .btn {
+            background: #3498db;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover, .btn:hover {
+            background: #2980b9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8f9fa" width="1200" height="600"/><path fill="%23e9ecef" d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-button {
+            background: white;
+            color: #3498db;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .success {
+            color: #27ae60;
+            text-align: center;
+            padding: 1rem;
+            background: #d5f4e6;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Page specific styles */
+        .page-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .auth-page {
+            background: #f8f9fa;
+            padding: 5rem 0;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .contact-page {
+            background: #f8f9fa;
+            padding: 5rem 0;
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">🔒 SecureHire</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('contact')">Contact</a></li>
+                    <li><a onclick="showPage('login')">Login</a></li>
+                    <li><a onclick="showPage('signup')">Sign Up</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cta-button" onclick="showPage('signup')">Get Started</a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Comprehensive Employment Background Checks</h1>
+                <p>Enable a bias-free and productive workplace without the high background verification costs. We provide documentation verification services to help you make informed hiring decisions.</p>
+                <button class="hero-button" onclick="showPage('contact')">Get a Quote</button>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" style="background: #f8f9fa;">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">We offer a comprehensive suite of background check services tailored to meet your specific needs.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <h3>Criminal Background Checks</h3>
+                        <p>Access criminal records from federal, state, and county databases, including felony and misdemeanor convictions.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⏰</div>
+                        <h3>Employment Verification</h3>
+                        <p>Verify the employment history of your potential candidates to identify any discrepancies by contacting previous employers.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">✅</div>
+                        <h3>Education Verification</h3>
+                        <p>Confirm the educational background of your candidates, including degrees, certifications, and attendance dates.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🚗</div>
+                        <h3>Driving Record Checks</h3>
+                        <p>Review driving history and traffic violations for positions that require transportation requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <p class="section-subtitle">We are committed to providing reliable and efficient background check services.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Accuracy and Reliability</h3>
+                        <p>Our rigorous verification processes ensure the highest level of accuracy using advanced technology.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Fast Turnaround Times</h3>
+                        <p>We understand the importance of timely hiring decisions. Our streamlined processes deliver results quickly.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔒</div>
+                        <h3>Compliance and Security</h3>
+                        <p>We adhere to all relevant laws and regulations, ensuring your background checks are conducted ethically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="section" style="background: #B2CCE5; text-align: center;">
+            <div class="container">
+                <h2 style="color: #0F1417; font-weight: 900;">Ready to Get Started?</h2>
+                <p style="color: #0F1417; font-size: 18px;">Protect your business and make informed hiring decisions with our comprehensive background check services.</p>
+                <button class="btn" style="background: white; color: #3498db;" onclick="showPage('contact')">Contact Us Today</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page contact-page">
+        <div class="container">
+            <h1 class="section-title">Contact Us</h1>
+            <p class="section-subtitle">Get in touch with our team for more information about our services.</p>
+            
+            <div class="form-container">
+                <div id="contact-success" class="success" style="display: none;">
+                    Thank you for your message! We'll get back to you soon.
+                </div>
+                
+                <form id="contact-form" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error" id="name-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error" id="email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your background check needs..."></textarea>
+                        <div class="error" id="message-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="page auth-page">
+        <div class="container">
+            <h1 class="section-title">Login</h1>
+            <p class="section-subtitle">Access your SecureHire account</p>
+            
+            <div class="form-container">
+                <div id="login-success" class="success" style="display: none;">
+                    Welcome back! You have successfully logged in.
+                </div>
+                
+                <form id="login-form" onsubmit="submitLoginForm(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email Address *</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <div class="error" id="login-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password *</label>
+                        <input type="password" id="login-password" name="password" required>
+                        <div class="error" id="login-password-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 1rem;">
+                    Don't have an account? <a href="#" onclick="showPage('signup')" style="color: #3498db;">Sign up here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div id="signup" class="page auth-page">
+        <div class="container">
+            <h1 class="section-title">Sign Up</h1>
+            <p class="section-subtitle">Create your SecureHire account</p>
+            
+            <div class="form-container">
+                <div id="signup-success" class="success" style="display: none;">
+                    Account created successfully! Welcome to SecureHire.
+                </div>
+                
+                <form id="signup-form" onsubmit="submitSignupForm(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name *</label>
+                        <input type="text" id="signup-name" name="name" required>
+                        <div class="error" id="signup-name-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">Email Address *</label>
+                        <input type="email" id="signup-email" name="email" required>
+                        <div class="error" id="signup-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-password">Password *</label>
+                        <input type="password" id="signup-password" name="password" required minlength="8">
+                        <div class="error" id="signup-password-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password *</label>
+                        <input type="password" id="confirm-password" name="confirmPassword" required>
+                        <div class="error" id="confirm-password-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 1rem;">
+                    Already have an account? <a href="#" onclick="showPage('login')" style="color: #3498db;">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Criminal Background Checks</a>
+                    <a href="#">Employment Verification</a>
+                    <a href="#">Education Verification</a>
+                    <a href="#">Driving Record Checks</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">News</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">FCRA Compliance</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a onclick="showPage('contact')">Contact Us</a>
+                    <a href="#">Support</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 SecureHire. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Contact form handling
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            // Clear previous errors
+            clearErrors(['name-error', 'email-error', 'message-error']);
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            let isValid = true;
+            
+            if (name.length < 2) {
+                showError('name-error', 'Name must be at least 2 characters long');
+                isValid = false;
+            }
+            
+            if (!isValidEmail(email)) {
+                showError('email-error', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (message.length < 10) {
+                showError('message-error', 'Message must be at least 10 characters long');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                document.getElementById('contact-form').style.display = 'none';
+                document.getElementById('contact-success').style.display = 'block';
+            }
+        }
+
+        // Login form handling
+        function submitLoginForm(event) {
+            event.preventDefault();
+            
+            clearErrors(['login-email-error', 'login-password-error']);
+            
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            
+            let isValid = true;
+            
+            if (!isValidEmail(email)) {
+                showError('login-email-error', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (password.length < 6) {
+                showError('login-password-error', 'Password must be at least 6 characters long');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('login-success').style.display = 'block';
+            }
+        }
+
+        // Sign up form handling
+        function submitSignupForm(event) {
+            event.preventDefault();
+            
+            clearErrors(['signup-name-error', 'signup-email-error', 'signup-password-error', 'confirm-password-error']);
+            
+            const name = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            let isValid = true;
+            
+            if (name.length < 2) {
+                showError('signup-name-error', 'Name must be at least 2 characters long');
+                isValid = false;
+            }
+            
+            if (!isValidEmail(email)) {
+                showError('signup-email-error', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (password.length < 8) {
+                showError('signup-password-error', 'Password must be at least 8 characters long');
+                isValid = false;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('confirm-password-error', 'Passwords do not match');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                document.getElementById('signup-form').style.display = 'none';
+                document.getElementById('signup-success').style.display = 'block';
+            }
+        }
+
+        // Utility functions
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(elementId, message) {
+            document.getElementById(elementId).textContent = message;
+        }
+
+        function clearErrors(errorIds) {
+            errorIds.forEach(id => {
+                document.getElementById(id).textContent = '';
+            });
+        }
+    </script>
+</body>
+</html>
