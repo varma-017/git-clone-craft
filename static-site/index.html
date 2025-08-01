@@ -3,181 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureHire - Professional Background Screening</title>
+    <title>SecureHire - Comprehensive Employment Background Checks</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <i class="fas fa-shield-alt"></i>
-                <span>SecureHire</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('home')">🔒 SecureHire</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('contact')">Contact</a></li>
+                    <li><a onclick="showPage('login')">Login</a></li>
+                    <li><a onclick="showPage('signup')">Sign Up</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="cta-button" onclick="showPage('signup')">Get Started</a>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Professional Background Screening Solutions</h1>
-            <p class="hero-subtitle">Make informed hiring decisions with our comprehensive background check services</p>
-            <button class="cta-button">Get Started Today</button>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1483058712412-4245e9b90334" alt="Professional workspace">
-        </div>
-    </section>
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Comprehensive Employment Background Checks</h1>
+                <p>Enable a bias-free and productive workplace without the high background verification costs. We provide documentation verification services to help you make informed hiring decisions.</p>
+                <button class="hero-button" onclick="showPage('contact')">Get a Quote</button>
+            </div>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-check"></i>
+        <!-- Services Section -->
+        <section class="section" style="background: #f8f9fa;">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">We offer a comprehensive suite of background check services tailored to meet your specific needs.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <h3>Criminal Background Checks</h3>
+                        <p>Access criminal records from federal, state, and county databases, including felony and misdemeanor convictions.</p>
                     </div>
-                    <h3>Identity Verification</h3>
-                    <p>Comprehensive identity checks to ensure authenticity</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-alt"></i>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⏰</div>
+                        <h3>Employment Verification</h3>
+                        <p>Verify the employment history of your potential candidates to identify any discrepancies by contacting previous employers.</p>
                     </div>
-                    <h3>Employment History</h3>
-                    <p>Detailed employment verification and reference checks</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">✅</div>
+                        <h3>Education Verification</h3>
+                        <p>Confirm the educational background of your candidates, including degrees, certifications, and attendance dates.</p>
                     </div>
-                    <h3>Education Verification</h3>
-                    <p>Academic credentials and certification validation</p>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🚗</div>
+                        <h3>Driving Record Checks</h3>
+                        <p>Review driving history and traffic violations for positions that require transportation requirements.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-header">
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">Ready to enhance your hiring process? Get in touch with our team of background screening experts.</p>
+        <!-- Why Choose Us Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <p class="section-subtitle">We are committed to providing reliable and efficient background check services.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Accuracy and Reliability</h3>
+                        <p>Our rigorous verification processes ensure the highest level of accuracy using advanced technology.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Fast Turnaround Times</h3>
+                        <p>We understand the importance of timely hiring decisions. Our streamlined processes deliver results quickly.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔒</div>
+                        <h3>Compliance and Security</h3>
+                        <p>We adhere to all relevant laws and regulations, ensuring your background checks are conducted ethically.</p>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="section" style="background: #B2CCE5; text-align: center;">
+            <div class="container">
+                <h2 style="color: #0F1417; font-weight: 900;">Ready to Get Started?</h2>
+                <p style="color: #0F1417; font-size: 18px;">Protect your business and make informed hiring decisions with our comprehensive background check services.</p>
+                <button class="btn" style="background: white; color: #3498db;" onclick="showPage('contact')">Contact Us Today</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page contact-page">
+        <div class="container">
+            <h1 class="section-title">Contact Us</h1>
+            <p class="section-subtitle">Get in touch with our team for more information about our services.</p>
             
-            <div class="contact-grid">
-                <!-- Contact Form -->
-                <div class="contact-form-container">
-                    <div class="contact-card">
-                        <h3 class="card-title">Send us a message</h3>
-                        <p class="card-subtitle">Fill out the form below and we'll get back to you as soon as possible.</p>
-                        
-                        <form class="contact-form" id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your background screening needs..."></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-button">
-                                <i class="fas fa-paper-plane"></i>
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
+            <div class="form-container">
+                <div id="contact-success" class="success" style="display: none;">
+                    Thank you for your message! We'll get back to you soon.
                 </div>
-
-                <!-- Contact Information -->
-                <div class="contact-info-container">
-                    <div class="contact-info-header">
-                        <h3>Get in Touch</h3>
-                        <p>We're here to help you make informed hiring decisions. Our team of experts is ready to discuss your specific background screening needs and provide tailored solutions.</p>
+                
+                <form id="contact-form" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error" id="name-error"></div>
                     </div>
-
-                    <div class="contact-info-list">
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <p class="contact-value">+1 (555) 123-4567</p>
-                                <p class="contact-desc">Monday to Friday, 9AM to 6PM EST</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p class="contact-value">contact@securehire.com</p>
-                                <p class="contact-desc">We'll respond within 24 hours</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Office</h4>
-                                <p class="contact-value">123 Business District, Suite 100</p>
-                                <p class="contact-desc">New York, NY 10001</p>
-                            </div>
-                        </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error" id="email-error"></div>
                     </div>
-
-                    <!-- Business Hours -->
-                    <div class="business-hours">
-                        <h4>Business Hours</h4>
-                        <div class="hours-list">
-                            <div class="hours-item">
-                                <span>Monday - Friday</span>
-                                <span>9:00 AM - 6:00 PM EST</span>
-                            </div>
-                            <div class="hours-item">
-                                <span>Saturday</span>
-                                <span>10:00 AM - 2:00 PM EST</span>
-                            </div>
-                            <div class="hours-item">
-                                <span>Sunday</span>
-                                <span>Closed</span>
-                            </div>
-                        </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your background check needs..."></textarea>
+                        <div class="error" id="message-error"></div>
                     </div>
-                </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="page auth-page">
+        <div class="container">
+            <h1 class="section-title">Login</h1>
+            <p class="section-subtitle">Access your SecureHire account</p>
+            
+            <div class="form-container">
+                <div id="login-success" class="success" style="display: none;">
+                    Welcome back! You have successfully logged in.
+                </div>
+                
+                <form id="login-form" onsubmit="submitLoginForm(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email Address *</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <div class="error" id="login-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password *</label>
+                        <input type="password" id="login-password" name="password" required>
+                        <div class="error" id="login-password-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 1rem;">
+                    Don't have an account? <a href="#" onclick="showPage('signup')" style="color: #3498db;">Sign up here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Page -->
+    <div id="signup" class="page auth-page">
+        <div class="container">
+            <h1 class="section-title">Sign Up</h1>
+            <p class="section-subtitle">Create your SecureHire account</p>
+            
+            <div class="form-container">
+                <div id="signup-success" class="success" style="display: none;">
+                    Account created successfully! Welcome to SecureHire.
+                </div>
+                
+                <form id="signup-form" onsubmit="submitSignupForm(event)">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name *</label>
+                        <input type="text" id="signup-name" name="name" required>
+                        <div class="error" id="signup-name-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">Email Address *</label>
+                        <input type="email" id="signup-email" name="email" required>
+                        <div class="error" id="signup-email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-password">Password *</label>
+                        <input type="password" id="signup-password" name="password" required minlength="8">
+                        <div class="error" id="signup-password-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password *</label>
+                        <input type="password" id="confirm-password" name="confirmPassword" required>
+                        <div class="error" id="confirm-password-error"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+                </form>
+                
+                <p style="text-align: center; margin-top: 1rem;">
+                    Already have an account? <a href="#" onclick="showPage('login')" style="color: #3498db;">Login here</a>
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>SecureHire</span>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#">Criminal Background Checks</a>
+                    <a href="#">Employment Verification</a>
+                    <a href="#">Education Verification</a>
+                    <a href="#">Driving Record Checks</a>
                 </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">News</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">FCRA Compliance</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a onclick="showPage('contact')">Contact Us</a>
+                    <a href="#">Support</a>
+                    <a href="#">Help Center</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
                 <p>&copy; 2024 SecureHire. All rights reserved.</p>
             </div>
         </div>
